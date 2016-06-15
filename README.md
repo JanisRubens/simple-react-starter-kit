@@ -8,6 +8,11 @@ To use it simply do:
 - npm run build  -> for prod
 - npm run dev -> for web-pack dev server;
 
+In addition you will need to run mongoDB.
+
+Download it,install[def] and after create folder db/db/ on root of the /C disk.
+In new console tab, go to the installed mongodb folder and run mongoed(or something simmilar)
+
 
 Folder structure:
 -public
