@@ -15,16 +15,16 @@ In new console tab, go to the installed mongodb folder and run mongoed(or someth
 
 
 Folder structure:
--public
---build
---index.html
--server
---modules
---routes
--src
---assets
----stylesheets
---components
+- public
+-- build
+-- index.html
+- server
+-- modules
+-- routes
+- src
+-- assets
+--- stylesheets
+-- components
 --index.js
 -server.js
 
