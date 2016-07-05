@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var UserSchema = require('../../modules/user').User;
+//var mongoose = require('mongoose');
+//var UserSchema = require('../../modules/user').User;
 var express = require('express');
 var router = express.Router();
 

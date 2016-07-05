@@ -4,21 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "webpack-dev-server --progress --colors --inline --hot",
-    "build": "webpack --progress --colors --config webpack.prod.config.js"
+    "start": "set NODE_ENV=production && node start.js",
+    "dev": "set NODE_ENV=development && node webpack-dev-server.js",
+    "build": "set NODE_ENV=production && webpack & webpack -p --config webpack.config.js"
   },
   "keywords": [],
   "author": "Janis Rubens",
   "license": "ISC",
   "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.10.4",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
+    "mongoose": "^4.4.20",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-router": "^2.4.1",
-    "mongoose": "^4.4.20"
+    "react-router": "^2.4.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
@@ -31,8 +33,10 @@
     "file-loader": "^0.8.5",
     "flux": "^2.1.1",
     "history": "^3.0.0",
+    "nodemon": "^1.9.2",
     "node-sass": "^3.7.0",
     "sass-loader": "^3.2.0",
+    "shelljs": "^0.7.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
