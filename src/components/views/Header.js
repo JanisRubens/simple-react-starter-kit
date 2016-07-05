@@ -6,7 +6,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <header>
-HEADER!!!!
+111111111111111111asd
       </header>
     );
   }

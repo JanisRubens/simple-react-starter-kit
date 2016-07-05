@@ -3,24 +3,22 @@ var path = require('path');
 
 var webpackConfig = {
 	resolve: {
-		extensions: ['', '.js', '.jsx']
+		extensions: ['', '.js']
 	},
 	entry: [
-		'webpack-dev-server/client?http://localhost:3000',
-		'webpack/hot/only-dev-server',
 		'./src/client.js'
 	],
 	output: {
-		path: path.resolve('./build/js'),
+		path: path.resolve('./public/build/js'),
 		publicPath: '/public/js/',
-		filename: 'main.js'
+		filename: 'main.min.js'
 	},
 	module: {
 		loaders: [
 			{
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
-				loaders: ['react-hot-loader', 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react']
+				loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react']
 //				loader:'babel',
 //				query: {
 //					presets: ["es2015", "stage-0", "react"]
@@ -37,22 +35,26 @@ var webpackConfig = {
 			{
 				test: /\.scss$/,
 				loader: "style!css!autoprefixer!sass"
-			}
+			},
 		]
 	},
 	node: {
 		setImmediate: false
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+				NODE_ENV: JSON.stringify('production')
+			}
+		}),
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
 			}
 		})
 	],
-	devtool: 'eval'
+	devtool: 'source-map'
 };
 
 module.exports = webpackConfig;
