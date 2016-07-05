@@ -1,13 +1,17 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default class Header extends React.Component {
 
 
-  render() {
-    return (
-      <header>
-111111111111111111asd
-      </header>
-    );
-  }
+	render() {
+		return (
+			<header>
+			<ul>
+			<li><Link to="/">SWOOOD</Link></li>
+			<li><Link to="/about">Users</Link></li>
+			</ul>
+			</header>
+		);
+	}
 }
