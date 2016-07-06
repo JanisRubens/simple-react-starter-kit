@@ -3,6 +3,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Link } from "react-router";
 
+import '../../assets/stylesheets/base.scss';
+
 export default class MainLayout extends React.Component {
   constructor() {
     super();
@@ -13,10 +15,10 @@ export default class MainLayout extends React.Component {
 
   render() {
     return (
-      <div id="main-wraper">
+      <div id="page-wrap">
         <Header></Header>
-        <main>
-          {this.props.children}
+        <main id="main-wrap">
+          { this.props.children }
         </main>
         <Footer></Footer>
       </div>

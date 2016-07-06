@@ -1,5 +1,7 @@
 import React from "react";
 
+import '../../assets/stylesheets/components/footer.scss';
+
 
 export default class Footer extends React.Component {
   constructor() {
@@ -15,7 +17,7 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-      <footer>
+      <footer id="footer">
        Footer!
       </footer>
     );

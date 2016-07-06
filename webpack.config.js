@@ -21,10 +21,10 @@ var webpackConfig = {
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				loaders: ['react-hot-loader', 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react']
-//				loader:'babel',
-//				query: {
-//					presets: ["es2015", "stage-0", "react"]
-//				}
+				//				loader:'babel',
+				//				query: {
+				//					presets: ["es2015", "stage-0", "react"]
+				//				}
 			},
 			{ 
 				test: /\.json$/,
@@ -33,6 +33,10 @@ var webpackConfig = {
 			{
 				test: /\.html$/,
 				loader: 'raw'
+			},
+			{ 
+				test: /\.(png|jpg)$/,
+				loader: 'url-loader?limit=8192'
 			},
 			{
 				test: /\.scss$/,
