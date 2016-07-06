@@ -14,8 +14,8 @@ const applicationRoot = document.getElementById('application-root');
 ReactDOM.render(
 	<Router history={browserHistory}>
 		<Route path="/" component={MainLayout}>
-			<IndexRoute component={Home} />
-			<Route path="about" component={About} />
+			<IndexRoute name="active" component={Home} />
+			<Route path="about"  name="active" component={About} />
 			<Route path='*' component={NotFound} />
 		</Route>
 	</Router>,
