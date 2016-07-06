@@ -7,15 +7,14 @@
 		height: 100%;
 		#main-wrap {
 			min-height: 100%;
-			/* equal to footer height */
-			margin-bottom: -142px; 
+			margin-bottom: -142px; //Needs to be -{height} as #footer
 			&:after {
 				content: "";
 				display: block;
 			}
 		}
 		#footer {
-			height: 142px; 
+			height: 142px;  //Needs to be the same value
 		}
 
 	}
