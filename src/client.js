@@ -12,14 +12,6 @@ import About from "./components/views/About";
 import NotFound from "./components/NotFound";
 
 const applicationRoot = document.getElementById('application-root');
-
-//All sites routing is listed here
-
-ReactDOM.render(
-	<Router history={browserHistory}>
-		<Route path="/" component={MainLayout}>
-			<IndexRoute component={Home} />
-			<Route path="about" component={About} />
 //			<Route path="about">
 //				<IndexRoute component={About} />
 //			  	<Route path="general" component={General} />
@@ -27,7 +19,15 @@ ReactDOM.render(
 //			  	<Route path="folderstructure" component={FolderStructure} />
 //				<Route path="author" component={Author} />
 //			</Route>
+//All sites routing is listed here
+
+ReactDOM.render(
+	<Router history={browserHistory}>
+		<Route path="/" component={MainLayout}>
+			<IndexRoute component={Home} />
+			<Route path="about" component={About} />
 			<Route path='*' component={NotFound} />
 		</Route>
 	</Router>,
 applicationRoot);
+

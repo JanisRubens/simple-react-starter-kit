@@ -1,5 +1,4 @@
 import React from "react";
-//Imports for rest of the components here
 import Controls from '../shared/Controls';
 import General from "./aboutViews/General";
 import Author from "./aboutViews/Author";
@@ -12,68 +11,39 @@ export default class About extends React.Component {
 		super(props);
 		this.state = {
 			currentSlide: 1,
-			slides: {
-				1: "<General></General>",
-				2: HowToUse,
-				3: FolderStructure,
-				4: Author
-			}
+			slides: [General,HowToUse,FolderStructure,Author]
 		};
 	}
 
 	nextSlide() {
-		this.setState({
-			slide: this.state.slide + 1
-		})
+		const size = this.state.slides.length;
+		if ((this.state.currentSlide % size) !== 0) {
+			this.setState({
+				currentSlide: this.state.currentSlide + 1
+			})
+		}
 	}
 
 	prevSlide() {
-		this.setState({
-			slide: this.state.slide - 1
-		})
+		if (this.state.currentSlide !== 1) {
+			this.setState({
+				currentSlide: this.state.currentSlide - 1
+			})
+		}
 	}
-
-	
 	
 	render() {
-		const slideName = this.state.slides[this.state.currentSlide];
-		console.log(slideName);
+		const SlideName = this.state.slides[this.state.currentSlide - 1];
+
 		return (
 			<div>
-				<Controls></Controls>
-				slideName
+				<Controls next = { this.nextSlide.bind(this) }
+						  prev = { this.prevSlide.bind(this) }
+						  current = { this.state.currentSlide }
+						  arr = { this.state.slides }
+				></Controls>
+				<SlideName/>
 			</div>
 		);
-		//pass the functions as props when you create child compontents!
-//		switch ( this.state.slide ) {
-//			case 1:
-//				return (
-//					<div>
-//					<Controls></Controls>
-//					<h1>We are in {this.state.slide} </h1>
-//					</div>
-//				);
-//			case 2:
-//				return (
-//					<div>
-//					<Controls></Controls>
-//					<h1>We are in {this.state.slide} </h1>
-//					</div>
-//				);
-//			case 3:
-//				return (
-//					<div>
-//					<Controls></Controls>
-//					<h1>We are in {this.state.slide} </h1>
-//					</div>
-//				);
-//			case 4:
-//				return (
-//					<div>
-//					<Controls></Controls>
-//					<h1>We are in {this.state.slide} </h1>
-//					</div>
-//				);
-//		}
 	}
 }
