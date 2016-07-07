@@ -2,14 +2,14 @@ import React from "react";
 
 
 export default class Controls extends React.Component {
-
-	renderCoins( arr, current ) {
+	
+	renderCoins( arr, current, callback ) {
 		if (arr.length > 0) {      
 			return arr.map(function(item, index){
 				if ( index === current )
-					return  <span className="active" key={index} >{index}</span>
+					return  <span className="active" key = { index } > ACTIVE{ index } </span>
 					else 
-						return   <span key={index} >{index}</span>
+					return   <span key = { index } onClick = { callback.bind(this, index) } > BBB{ index } </span>
 			});
 
 		}
@@ -17,7 +17,7 @@ export default class Controls extends React.Component {
 	}
 
 	render() {
-		const coins = this.renderCoins( this.props.arr, this.props.current )
+		const coins = this.renderCoins( this.props.arr, this.props.current, this.props.callback.bind(this) );
 		return (
 			<div className="controlls">
 			<span onClick={ this.props.prev.bind(this) } >prev</span>

@@ -10,14 +10,14 @@ export default class About extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentSlide: 1,
-			slides: [General,HowToUse,FolderStructure,Author]
+			currentSlide: 0,
+			slides: [ General, HowToUse, FolderStructure, Author ]
 		};
 	}
 
 	nextSlide() {
 		const size = this.state.slides.length;
-		if ((this.state.currentSlide % size) !== 0) {
+		if (this.state.currentSlide !== size ) {
 			this.setState({
 				currentSlide: this.state.currentSlide + 1
 			})
@@ -25,15 +25,21 @@ export default class About extends React.Component {
 	}
 
 	prevSlide() {
-		if (this.state.currentSlide !== 1) {
+		if (this.state.currentSlide !== 0) {
 			this.setState({
 				currentSlide: this.state.currentSlide - 1
 			})
 		}
 	}
 	
+	goTo( index ) {
+			this.setState({
+				currentSlide: index
+			})	
+	}
+	
 	render() {
-		const SlideName = this.state.slides[this.state.currentSlide - 1];
+		const SlideName = this.state.slides[ this.state.currentSlide ];
 
 		return (
 			<div>
@@ -41,6 +47,7 @@ export default class About extends React.Component {
 						  prev = { this.prevSlide.bind(this) }
 						  current = { this.state.currentSlide }
 						  arr = { this.state.slides }
+						  callback = {this.goTo.bind(this)}
 				></Controls>
 				<SlideName/>
 			</div>
