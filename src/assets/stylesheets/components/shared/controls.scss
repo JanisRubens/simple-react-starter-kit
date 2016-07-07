@@ -1,0 +1,29 @@
+.controlls {
+	background-color: azure;
+	display: block;
+	width: 100%;
+	height: 100px;
+	.prev {
+		//position: absolute;
+		//left: 10px;
+		float: left;
+		padding: 10px;
+		width: 10%;
+	}
+	.next {
+		//position: absolute;
+		//right: 10px;
+		padding: 10px;
+		float: right;
+		width: 10%;
+	}
+	.coins {
+		width: 80%;
+		float: left;
+		text-align: center;
+		span {
+			padding: 10px;
+		}
+		
+	}
+}

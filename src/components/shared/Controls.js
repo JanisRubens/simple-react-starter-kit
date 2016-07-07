@@ -1,4 +1,5 @@
 import React from "react";
+import '../../assets/stylesheets/components/shared/controls.scss';
 
 
 export default class Controls extends React.Component {
@@ -20,11 +21,11 @@ export default class Controls extends React.Component {
 		const coins = this.renderCoins( this.props.arr, this.props.current, this.props.callback.bind(this) );
 		return (
 			<div className="controlls">
-			<span onClick={ this.props.prev.bind(this) } >prev</span>
+			<span className="prev" onClick={ this.props.prev.bind(this) } >prev</span>
 			<div className="coins">
 				{coins}
 				</div>
-				<span onClick={ this.props.next.bind(this) } >next</span>
+				<span className="next"  onClick={ this.props.next.bind(this) } >next</span>
 					</div>
 				);
 }

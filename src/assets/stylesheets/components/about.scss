@@ -1,0 +1,19 @@
+.about-wrapper {
+	.slide-animation-enter {
+		margin-left: 100%;
+	}
+
+	.slide-animation-enter.slide-animation-enter-active {
+		margin-left: 0;
+		transition: margin-left 500ms ease-in;
+	}
+
+	.slide-animation-leave {
+		margin-left: 0;
+	}
+
+	.slide-animation-leave.slide-animation-leave-active {
+		margin-left: 100%;
+		transition: margin-left 300ms ease-in;
+	}
+}

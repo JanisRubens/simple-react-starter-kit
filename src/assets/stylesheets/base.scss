@@ -1,6 +1,5 @@
 @import 'reset';
 
-/*Actual style starts here*/
 #application-root {
 	height: 100%;
 	#page-wrap {
@@ -18,4 +17,8 @@
 		}
 
 	}
+}
+
+.clear-fix {
+	clear: both;
 }

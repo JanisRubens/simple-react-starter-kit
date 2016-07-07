@@ -1,9 +1,12 @@
 import React from "react";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Controls from '../shared/Controls';
 import General from "./aboutViews/General";
 import Author from "./aboutViews/Author";
 import HowToUse from "./aboutViews/HowToUse";
 import FolderStructure from "./aboutViews/FolderStructure";
+
+import '../../assets/stylesheets/components/about.scss';
 
 export default class About extends React.Component {
 
@@ -17,7 +20,7 @@ export default class About extends React.Component {
 
 	nextSlide() {
 		const size = this.state.slides.length;
-		if (this.state.currentSlide !== size ) {
+		if (this.state.currentSlide < size - 1 ) {
 			this.setState({
 				currentSlide: this.state.currentSlide + 1
 			})
@@ -42,14 +45,16 @@ export default class About extends React.Component {
 		const SlideName = this.state.slides[ this.state.currentSlide ];
 
 		return (
-			<div>
+			<div className="about-wrapper">
 				<Controls next = { this.nextSlide.bind(this) }
 						  prev = { this.prevSlide.bind(this) }
 						  current = { this.state.currentSlide }
 						  arr = { this.state.slides }
 						  callback = {this.goTo.bind(this)}
 				></Controls>
-				<SlideName/>
+				<ReactCSSTransitionGroup transitionName="slide-animation" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+				<SlideName key={this.state.currentSlide}/>
+				</ReactCSSTransitionGroup>
 			</div>
 		);
 	}
