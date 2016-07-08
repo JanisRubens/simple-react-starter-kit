@@ -18,7 +18,7 @@ export default class MainLayout extends React.Component {
 			<div id="page-wrap">
 			<Header></Header>
 			<main id="main-wrap">
-			<div className="clear-fix">
+			<div className="child-container clear-fix">
 			{ this.props.children }
 			</div>
 			</main>

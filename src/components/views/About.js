@@ -52,7 +52,7 @@ export default class About extends React.Component {
 						  arr = { this.state.slides }
 						  callback = {this.goTo.bind(this)}
 				></Controls>
-				<ReactCSSTransitionGroup transitionName="slide-animation" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+				<ReactCSSTransitionGroup component="div" className="animated-slides" transitionName="slide-animation" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 				<SlideName key={this.state.currentSlide}/>
 				</ReactCSSTransitionGroup>
 			</div>

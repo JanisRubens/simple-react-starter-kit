@@ -5,11 +5,14 @@
 	#page-wrap {
 		height: 100%;
 		#main-wrap {
-			min-height: 100%;
+			height: 100%;
 			margin-bottom: -142px; //Needs to be -{height} as #footer
 			&:after {
 				content: "";
 				display: block;
+			}
+			.child-container {
+				height: 100%;
 			}
 		}
 		#footer {
