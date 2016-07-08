@@ -13,6 +13,7 @@ export default class About extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			animation: "slide-animation-next",
 			currentSlide: 0,
 			slides: [ General, HowToUse, FolderStructure, Author ]
 		};
@@ -22,6 +23,7 @@ export default class About extends React.Component {
 		const size = this.state.slides.length;
 		if (this.state.currentSlide < size - 1 ) {
 			this.setState({
+				animation: "slide-animation-next",
 				currentSlide: this.state.currentSlide + 1
 			})
 		}
@@ -30,19 +32,30 @@ export default class About extends React.Component {
 	prevSlide() {
 		if (this.state.currentSlide !== 0) {
 			this.setState({
+				animation: "slide-animation-prev",
 				currentSlide: this.state.currentSlide - 1
 			})
 		}
 	}
 	
 	goTo( index ) {
+		if (index > this.state.currentSlide) {
 			this.setState({
+				animation: "slide-animation-next",
 				currentSlide: index
-			})	
+			})
+		} 
+		else {
+			this.setState({
+				animation: "slide-animation-prev",
+				currentSlide: index
+			})
+		}
 	}
 	
 	render() {
 		const SlideName = this.state.slides[ this.state.currentSlide ];
+		const transitionName = this.state.animation;
 
 		return (
 			<div className="about-wrapper">
@@ -52,7 +65,7 @@ export default class About extends React.Component {
 						  arr = { this.state.slides }
 						  callback = {this.goTo.bind(this)}
 				></Controls>
-				<ReactCSSTransitionGroup component="div" className="animated-slides" transitionName="slide-animation" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+				<ReactCSSTransitionGroup component="div" className="animated-slides" transitionName={transitionName} transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 				<SlideName key={this.state.currentSlide}/>
 				</ReactCSSTransitionGroup>
 			</div>

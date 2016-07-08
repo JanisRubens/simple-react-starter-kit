@@ -10,7 +10,7 @@ export default class Controls extends React.Component {
 				if ( index === current )
 					return  <span className="active" key = { index } > ACTIVE{ index } </span>
 					else 
-					return   <span key = { index } onClick = { callback.bind(this, index) } > BBB{ index } </span>
+					return   <span key = { index } onClick = { callback.bind(this, index) } > OPTION{ index } </span>
 			});
 
 		}
