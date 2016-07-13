@@ -3,7 +3,8 @@ var bCrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var config = require('../config/index');
 //temporary data store
-var users = {};
+//var users = {};
+var users = require('./modules/tempUsers');
 module.exports = function(passport){
 
 //	// Passport needs to be able to serialize and deserialize users to support persistent login sessions

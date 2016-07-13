@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken');
 //var User = require('mongoose').model('User');
+var users = require('../modules/tempUsers');
 
 module.exports = function(config) {
 
@@ -7,6 +8,7 @@ module.exports = function(config) {
    * Return the middleware function.
    */
 	return function(req, res, next) {
+		console.log(req.headers.authorization);
 		if (!req.headers.authorization) {
 			return res.status(401).end();
 		}
@@ -19,17 +21,25 @@ module.exports = function(config) {
 			// the 401 code is for unauthorized status
 			if (err) { return res.status(401).end(); }
 
-			var userId = decoded.sub;
-
+			//var userId = decoded.sub;
+			var username = decoded.sub;
+			console.log(users[username]);
 			// check if a user exists
-			User.findById(userId, function(err, user) {
-				if (err || !user) {
-					return res.status(401).end();
-				}
+			// User.findById(userId, function(err, user) {
+			// 	if (err || !user) {
+			// 		return res.status(401).end();
+			// 	}
 
+			// 	return next();
+
+			// });
+
+			if(users[username]){
 				return next();
-
-			});
+			}
+			else {
+				return res.status(401).end();
+			}
 		});
 
 	};
