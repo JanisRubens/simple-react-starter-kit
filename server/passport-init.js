@@ -1,25 +1,27 @@
 var LocalStrategy = require('passport-local').Strategy;
 var bCrypt = require('bcrypt-nodejs');
+var jwt = require('jsonwebtoken');
+var config = require('../config/index');
 //temporary data store
 var users = {};
 module.exports = function(passport){
 
-	// Passport needs to be able to serialize and deserialize users to support persistent login sessions
-	passport.serializeUser(function(user, done) {
-		console.log('serializing user:',user.username);
-		//return the unique id for the user
-		done(null, user.username);
-	});
-
-	//Desieralize user will call with the unique id provided by serializeuser
-	passport.deserializeUser(function(username, done) {
-
-		return done(null, users[username]);
-
-	});
+//	// Passport needs to be able to serialize and deserialize users to support persistent login sessions
+//	passport.serializeUser(function(user, done) {
+//		console.log('serializing user:',user.username);
+//		//return the unique id for the user
+//		done(null, user.username);
+//	});
+//
+//	//Desieralize user will call with the unique id provided by serializeuser
+//	passport.deserializeUser(function(username, done) {
+//
+//		return done(null, users[username]);
+//
+//	});
 
 	passport.use('login', new LocalStrategy({
-			passReqToCallback : true
+    		passReqToCallback: true
 		},
 		function(req, username, password, done) { 
 			if(!users[username]){
@@ -29,7 +31,19 @@ module.exports = function(passport){
 
 			if(isValidPassword(users[username], password)){
 				//sucessfully authenticated
-				return done(null, users[username]);
+				
+				var payload = {
+				  sub: username//user._id,
+				};
+				// create a token string
+				var token = jwt.sign(payload, config.jwtSecret);
+
+				users[username].random = "random string i want to see";
+				var userData = users[username];
+
+				return done(null, token, userData);
+				
+				//return done(null, users[username]);
 			}
 			else{
 				console.log('Invalid password '+username);
@@ -39,7 +53,7 @@ module.exports = function(passport){
 	));
 
 	passport.use('signup', new LocalStrategy({
-			passReqToCallback : true // allows us to pass back the entire request to the callback
+    		passReqToCallback: true
 		},
 		function(req, username, password, done) {
 			if (users[username]){

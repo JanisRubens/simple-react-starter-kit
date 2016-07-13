@@ -1,4 +1,5 @@
 import React from "react";
+import * as loginActions from "../../actions/login";
 
 
 export default class Login extends React.Component {
@@ -22,7 +23,7 @@ export default class Login extends React.Component {
 	
 	login(event){
 		event.preventDefault();
-		console.log(this.state.username, this.state.password);
+		loginActions.login(this.state.username, this.state.password);
 	}
 
 	render() {

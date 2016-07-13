@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var router = express.Router();
 var routes = require('./server/routes/main');
-var session = require('express-session');
+//var session = require('express-session');
 var passport = require('passport');
 var initPassport = require('./server/passport-init');
 
@@ -14,14 +14,14 @@ var PORT = process.env.PORT || 3000;
 var ENV = process.env.NODE_ENV;
 var resFile = (JSON.stringify(ENV).indexOf('production') > -1) ? 'index' : 'index-dev';
 
-app.use(session({
-	secret: 'wilde cracken appears', //this should bee hidden from repo 
-	name: 'session-token',//cookie_name,
-	//store: sessionStore, // connect-mongo session store
-	proxy: true,
-	resave: true,
-	saveUninitialized: true
-}));
+//app.use(session({
+//	secret: 'wilde cracken appears', //this should bee hidden from repo 
+//	name: 'session-token',//cookie_name,
+//	//store: sessionStore, // connect-mongo session store
+//	proxy: true,
+//	resave: true,
+//	saveUninitialized: true
+//}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'), {index: resFile + '.html'}))
 
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 
 routes(app, passport);
 

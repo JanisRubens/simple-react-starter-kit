@@ -14,15 +14,32 @@ module.exports = function( passport ){
     });
 
     //log in
-    router.post('/login', passport.authenticate('login', {
+    router.post('/login', function(req, res, next) {
+		
+	passport.authenticate('login', {
         successRedirect: '/auth/success',
-        failureRedirect: '/auth/failure'
-    }));
+        failureRedirect: '/auth/failure',
+		session: false,
+    },
+	function(err, token, userData) {
+    if (err) {
+      if (err.name === "IncorrectCredentialsError") {
+        return res.status(400).json({ success: false, message: err.message });
+      }
+
+      return res.status(400).json({ success: false, message: "Could not process the form." });
+    }
+
+    return res.json({ success: true, message: "You have successfully logged in!", token: token, user: userData });
+
+  })(req, res, next)
+	});
 
     //sign up
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/auth/success',
-        failureRedirect: '/auth/failure'
+        failureRedirect: '/auth/failure',
+		session: false,
     }));
 
     //log out

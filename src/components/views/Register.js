@@ -1,5 +1,5 @@
 import React from "react";
-
+import * as registerActions from "../../actions/register";
 
 export default class Register extends React.Component {
 
@@ -9,10 +9,10 @@ export default class Register extends React.Component {
 		// Get values via this.refs
 		var data = {
 			name     : this.refs.name.value,
-			password : this.refs.password.value,
-			email    : this.refs.email.value,
+			password : this.refs.password.value//,
+			//email    : this.refs.email.value
 		}
-		console.log(data);
+		registerActions.register( data.name, data.password );
 	}
 	render() {
 		return ( <div>
@@ -25,13 +25,13 @@ export default class Register extends React.Component {
 				<input type="password"
 				ref="password"
 				defaultValue="pass" />
-
-				<label>Email</label>
-				<input type="email"
-				ref="email"
-				defaultValue="email@email.com" />
-
 				<button onClick={ this.saveAndContinue.bind(this) }>Save and Continue</button></div>
 			   )
 	}
 }
+
+
+				//<label>Email</label>
+				//<input type="email"
+				//ref="email"
+				//defaultValue="email@email.com" />
