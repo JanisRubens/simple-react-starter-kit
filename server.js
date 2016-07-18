@@ -1,10 +1,15 @@
 var express = require('express');
-var app = express();
+var config = require('./config/index');
+var mongoose = require('mongoose');
+var models = require('./server/models/main')(config, mongoose);
 var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var router = express.Router();
+
+
 var routes = require('./server/routes/main');
+var app = express();
 //var session = require('express-session');
 var passport = require('passport');
 var initPassport = require('./server/passport-init');
@@ -30,7 +35,6 @@ app.use(cookieParser());
 // Used for production build
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public'), {index: resFile + '.html'}))
-
 app.use(passport.initialize());
 //app.use(passport.session());
 

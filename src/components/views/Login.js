@@ -1,5 +1,6 @@
 import React from "react";
 import * as loginActions from "../../actions/login";
+import LoginStore from "../../stores/login";
 
 
 export default class Login extends React.Component {

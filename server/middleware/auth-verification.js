@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
-//var User = require('mongoose').model('User');
-var users = require('../modules/tempUsers');
+var user = require('mongoose').model('User');
+//var users = require('../modules/tempUsers');
+//var user = require('../models/user');
 
 module.exports = function(config) {
 

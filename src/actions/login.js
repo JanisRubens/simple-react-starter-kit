@@ -2,17 +2,27 @@ import dispatcher from "../utilities/dispatcher";
 import * as axios from 'axios';
 
 
-export function login( username, password ) {
+export function login(username, password) {
 	axios.post('/auth/login', {
 		username: username,
 		password: password
 	})
 		.then(function (response) {
-		console.log(response);
-	})
+			const loginData = response.data;
+			console.log(loginData);
+			console.log(dispatcher.dispatch);
+			dispatcher.dispatch({
+				type: "USER_LOGIN",
+				loginData
+			});
+		})
 		.catch(function (error) {
-		console.log(error);
-	});
+			const loginData = error;
+			dispatcher.dispatch({
+				type: "USER_LOGIN",
+				loginData
+			});
+		});
 };
 
 /*
