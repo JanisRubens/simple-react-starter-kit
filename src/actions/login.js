@@ -1,4 +1,5 @@
 import dispatcher from "../utilities/dispatcher";
+import ClientAuth from "../utilities/ClientAuth";
 import * as axios from 'axios';
 
 
@@ -8,26 +9,18 @@ export function login(username, password) {
 		password: password
 	})
 		.then(function (response) {
-			const loginData = response.data;
-			console.log(loginData);
-			console.log(dispatcher.dispatch);
+			const message = response.data.message;
+			ClientAuth.authenticateUser(response.data.token);
 			dispatcher.dispatch({
 				type: "USER_LOGIN",
-				loginData
+				message
 			});
 		})
 		.catch(function (error) {
-			const loginData = error;
+			const message = error.data.message;
 			dispatcher.dispatch({
 				type: "USER_LOGIN",
-				loginData
+				message
 			});
 		});
 };
-
-/*
-dispatcher.dispatch({
-        type: "RECIVED_SUMMONER_DATA",
-        allData
-      });
-	  */

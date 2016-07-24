@@ -1,36 +1,19 @@
 class Auth {
 
-  /**
-   * Authenticate a user. Save a token string in Local Storage
-   *
-   * @param {string} token
-   */
   static authenticateUser(token) {
-    localStorage.setItem('token', token);
+    localStorage.setItem('x-auth-token', token);
   }
 
-  /**
-   * Check if a user is authenticated - check if a token is saved in Local Storage
-   *
-   */
   static isUserAuthenticated() {
-    return localStorage.getItem('token') !== null;
+    return localStorage.getItem('x-auth-token') !== null;
   }
 
-  /**
-   * Deauthenticate a user. Remove a token from Local Storage.
-   *
-   */
   static deauthenticateUser() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('x-auth-token');
   }
 
-  /**
-   * Get a token value.
-   *
-   */
   static getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('x-auth-token');
   }
 
 }

@@ -45,7 +45,8 @@ module.exports = function (passport) {
         },
             function (err, info) {
                 if (err) {
-                    if (err.name === "MongoError" && err.code === 11000) {
+                    //i dont trust the mongo dublicate stuff, so my own check
+                    if (err.name === "ExistingUserError") {
                         // the 11000 Mongo code is for duplicate email error
                         // the 409 HTTP status code is for conflict error
                         return res.status(409).json({ success: false, message: "Check the form for errors.", errors: { email: "This email is already taken." } });

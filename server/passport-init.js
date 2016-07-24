@@ -21,7 +21,7 @@ module.exports = function (passport) {
 			User.findOne({ username: userData.username }, function (err, user) {
 				if (err) { return done(err); }
 
-				if (!user.username) {
+				if (!user) {
 					var error = new Error("Incorrect username");
 					error.name = "IncorrectCredentialsError";
 					return done(error);
@@ -63,21 +63,22 @@ module.exports = function (passport) {
 				password: password.trim(),
 			};
 			User.findOne({ username: userData.username }, function (err, user) {
+				console.log(user);
 				if (user) {
 					var error = new Error("User with name " + username + " already exists!");
 					error.name = "ExistingUserError";
 					return done(error);
 				}
-			});
-
-			var newUser = new User(userData);
-			newUser.save(function (err) {
-				if (err) {
-					return done(err);
+				else {
+					var newUser = new User(userData);
+					newUser.save(function (err) {
+						if (err) {
+							return done(null, err);
+						}
+						return done(null);
+					});
 				}
-				return done(null);
 			});
-
 		})
 	);
 };
